@@ -58,7 +58,7 @@ async def add_command(message: Message) -> None:
     message_to_reply = ""
     for product in products:  # Используем async for, так как find() возвращает курсор
         product_name = product.get('product_name', 'Неизвестный продукт')  # Получаем название продукта
-        expiry_date = product.get('expiry_date.iso', 'Дата неизвестна')  # Получаем дату истечения
+        expiry_date = product.get('expiry_date', 'Дата неизвестна').get("human", 'Дата неизвестна')  # Получаем дату истечения
         message_to_reply += f"{product_name} -> {expiry_date}\n"  # Формируем сообщение
 
     if message_to_reply:
