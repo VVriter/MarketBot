@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  marketbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:latest
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db  # Persist data
+
+volumes:
+  mongo_data:
